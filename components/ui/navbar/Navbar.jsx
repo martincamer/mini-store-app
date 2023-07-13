@@ -1,8 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import {
 	Box,
 	Button,
 	Container,
+	Drawer,
+	DrawerBody,
+	DrawerContent,
+	DrawerOverlay,
 	FormControl,
 	Input,
 	Modal,
@@ -18,13 +22,14 @@ import Link from 'next/link';
 function Navbar() {
 	const { handleClickCart } = useContext(MiniStoreContext);
 	const { isOpen, onClose, onOpen } = useDisclosure();
+	const [click, setClick] = useState(false);
 
 	const initialRef = React.useRef(null);
 	const finalRef = React.useRef(null);
 	return (
 		<Container
-			padding={'20px'}
-			className="shadow-md shadow-black/10"
+			padding={'20px max-md:px-0'}
+			className="shadow-md shadow-black/10 fixed top-0 w-full bg-white z-40"
 		>
 			<Box
 				display={'flex'}
@@ -32,6 +37,7 @@ function Navbar() {
 				alignItems={'center'}
 				maxW={1220}
 				margin={'0 auto'}
+				padding={'20px'}
 			>
 				<Box
 					className=" color-primary"
@@ -52,7 +58,7 @@ function Navbar() {
 					{links.map(link => (
 						<Link
 							className="font-medium text-lg uppercase text-terciary hover:text-primary transition-all ease-out duration-300"
-							href={link.link}
+							href={link.href}
 							key={link.link}
 						>
 							{link.link}
@@ -158,17 +164,72 @@ function Navbar() {
 						</Link>
 					</Box>
 				</Box>
+				<Box
+					className="hidden max-md:block"
+					onClick={() => setClick(!click)}
+				>
+					{!click ? (
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							fill="none"
+							viewBox="0 0 24 24"
+							strokeWidth={1.5}
+							stroke="currentColor"
+							className="w-8 h-8"
+						>
+							<path
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+							/>
+						</svg>
+					) : (
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							fill="none"
+							viewBox="0 0 24 24"
+							strokeWidth={1.5}
+							stroke="currentColor"
+							className="w-8 h-8"
+						>
+							<path
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								d="M6 18L18 6M6 6l12 12"
+							/>
+						</svg>
+					)}
+				</Box>
 			</Box>
+			{click && (
+				<Box
+					className={`${
+						click
+							? 'translate-x-[0] opacity-1'
+							: ' translate-x-[-500px] opacity-0'
+					} fixed  w-full h-[50%] bg-gray-100 flex flex-col items-center justify-center space-y-8 z-30 transition-all duration-300 ease-in-out`}
+				>
+					{links.map(link => (
+						<Link
+							className="font-medium text-xl uppercase text-terciary hover:text-primary transition-all ease-out duration-300"
+							href={link.href}
+							key={link.link}
+						>
+							{link.link}
+						</Link>
+					))}
+				</Box>
+			)}
 		</Container>
 	);
 }
 
 const links = [
-	{ link: 'home' },
-	{ link: 'tienda' },
-	{ link: 'about' },
-	{ link: 'blog' },
-	{ link: 'contacto' },
+	{ link: 'home', href: '/' },
+	{ link: 'tienda', href: 'tienda' },
+	{ link: 'about', href: 'about' },
+	{ link: 'blog', href: 'blog' },
+	{ link: 'contacto', href: 'contacto' },
 ];
 
 export default Navbar;

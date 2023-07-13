@@ -12,7 +12,7 @@ function MiniStoreCart() {
 				<Box
 					className={`${
 						isOpenCart ? 'left-0' : '-left-full'
-					} bg-white fixed top-0 bottom-0  w-[500px] max-md:w-full shadow-2xl  flex flex-col transition-all ease-in-out duration-300 p-10 z-10 gap-10`}
+					} bg-white fixed top-0 bottom-0  w-[500px] max-md:w-full shadow-2xl  flex flex-col transition-all ease-in-out duration-300 p-10 z-50 gap-10`}
 				>
 					<Box
 						className="flex justify-end w-full cursor-pointer"

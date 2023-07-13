@@ -6,14 +6,14 @@ import 'swiper/css/zoom';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-import { Zoom, Navigation } from 'swiper/modules';
+import { Zoom, Navigation, Autoplay } from 'swiper/modules';
 import { carousel_home } from '@/contents/home';
 import Image from 'next/image';
 
 function CarouselHome() {
 	const [isLargerThan769] = useMediaQuery('(max-width: 769px)');
 	return (
-		<Box className="bg-fourty p-20 max-lg:py-300 max-lg:px-10">
+		<Box className="bg-fourty px-[30px] py-[100px] max-md:pt-[180px] max-md:px-10">
 			<Swiper
 				zoom={true}
 				navigation={isLargerThan769 ? false : true}
@@ -24,11 +24,17 @@ function CarouselHome() {
 					'--swiper-navigation-color': '#D7DDDF',
 					'--swiper-pagination-color': '#D7DDDF',
 				}}
-				modules={[Zoom, Navigation]}
+				autoplay={{
+					delay: 3000,
+					disableOnInteraction: true,
+					waitForTransition: true,
+					stopOnLastSlide: true,
+				}}
+				modules={[Zoom, Navigation, Autoplay]}
 			>
 				{carousel_home.map(carousel => (
 					<SwiperSlide key={carousel._id}>
-						<Box className="flex items-center gap-5 w-2/3 mx-auto ">
+						<Box className="flex items-center justify-center gap-5 w-2/3 mx-auto max-md:w-full ">
 							<Box
 								className="flex flex-col gap-9 max-lg:items-center"
 								as="div"

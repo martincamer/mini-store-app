@@ -11,7 +11,7 @@ function ShopInstaOur() {
 		<Container
 			maxW={1440}
 			margin={'0 auto'}
-			padding={'50px 20px'}
+			padding={'10px 20px'}
 			as="div"
 		>
 			<Box className="space-y-5">
@@ -22,9 +22,14 @@ function ShopInstaOur() {
 					COMPRA EN NUESTRO INSTAGRAM
 				</Text>
 			</Box>
-			<Box>
+			<Box className="flex flex-wrap max-md:justify-center gap-10 mt-20 max-md:mt-10">
 				{show_imagenes.map(imagen => (
-					<Image src={imagen} />
+					<Image
+						className="rounded-lg shadow-lg shadow-black/30 hover:scale-105 hover:translate-x-1 transition-all ease-in-out duration-300 cursor-pointer max-md:w-[140px]"
+						key={imagen}
+						alt="imagen"
+						src={imagen.img}
+					/>
 				))}
 			</Box>
 		</Container>
@@ -32,13 +37,11 @@ function ShopInstaOur() {
 }
 
 const show_imagenes = [
-	{
-		uno: uno,
-		dos: dos,
-		tres: tres,
-		cuatro: cuatro,
-		cinco: cinco,
-	},
+	{ img: uno },
+	{ img: dos },
+	{ img: tres },
+	{ img: cuatro },
+	{ img: cinco },
 ];
 
 export default ShopInstaOur;
