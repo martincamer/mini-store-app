@@ -47,7 +47,7 @@ function Navbar() {
 						as={'h3'}
 						className="font-medium text-3xl text-terciary"
 					>
-						MiniStore.
+						MiniStore-App.
 					</Text>
 				</Box>
 
